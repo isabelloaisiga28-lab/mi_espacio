@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<% if @post.foto.attached? %>
+  <div>
+    <%= image_tag @post.foto, style: "max-width: 400px; height: auto; border-radius: 15px;" %>
+  </div>
+<% end %>
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %>
+
+  <%= button_to "Destroy this post", @post, method: :delete %>
+</div>

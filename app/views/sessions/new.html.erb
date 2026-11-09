@@ -1,0 +1,145 @@
+<div class="login-page">
+
+  <div class="login-card">
+
+    <h1>🌸 Mi espacio</h1>
+
+    <h2>¡Bienvenida!</h2>
+
+    <p>Inicia sesión para entrar a tu espacio personal.</p>
+
+    <%= tag.div(flash[:alert], class: "mensaje-error") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "mensaje-ok") if flash[:notice] %>
+
+    <%= form_with url: session_path do |form| %>
+
+      <div class="campo">
+        <%= form.label :email_address, "Correo electrónico" %>
+        <%= form.email_field :email_address,
+            required: true,
+            autofocus: true,
+            autocomplete: "username",
+            placeholder: "Ingresa tu correo" %>
+      </div>
+
+      <div class="campo">
+        <%= form.label :password, "Contraseña" %>
+        <%= form.password_field :password,
+            required: true,
+            autocomplete: "current-password",
+            placeholder: "Ingresa tu contraseña" %>
+      </div>
+
+      <%= form.submit "Iniciar sesión", class: "boton-login" %>
+
+    <% end %>
+
+    <div class="enlace">
+      <%= link_to "¿Olvidaste tu contraseña?", new_password_path %>
+    </div>
+
+    <p class="pie">💗 Un lugar especial para ti 💗</p>
+
+  </div>
+
+</div>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff0f6;
+  }
+
+  .login-page {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .login-card {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 5px 20px #e8c5d5;
+    box-sizing: border-box;
+  }
+
+  .login-card h1 {
+    color: #c45b91;
+    font-size: 32px;
+  }
+
+  .login-card h2 {
+    color: #a66bc1;
+  }
+
+  .login-card p {
+    color: #666;
+  }
+
+  .campo {
+    text-align: left;
+    margin: 22px 0;
+  }
+
+  .campo label {
+    display: block;
+    color: #a66bc1;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .campo input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #e8b9d1;
+    border-radius: 12px;
+    box-sizing: border-box;
+    outline-color: #d88ab2;
+  }
+
+  .boton-login {
+    width: 100%;
+    padding: 14px;
+    background: #d88ab2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .boton-login:hover {
+    background: #b75d91;
+  }
+
+  .enlace {
+    margin-top: 22px;
+  }
+
+  .enlace a {
+    color: #a66bc1;
+    text-decoration: none;
+  }
+
+  .pie {
+    margin-top: 30px;
+    font-size: 13px;
+  }
+
+  .mensaje-error {
+    color: #c03965;
+    margin: 10px;
+  }
+
+  .mensaje-ok {
+    color: green;
+    margin: 10px;
+  }
+</style>

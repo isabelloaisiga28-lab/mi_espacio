@@ -1,0 +1,181 @@
+
+<div class="pagina">
+
+  <header class="barra">
+    <h2>🌸 Mi espacio</h2>
+
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#publicaciones">Publicaciones</a>
+      <a href="#perfil">Mi perfil</a>
+      <a href="#usuarios">Usuarios</a>
+    </nav>
+  </header>
+
+  <section id="inicio" class="bienvenida">
+    <h2>¡Bienvenido/a, <%= Current.user.name %>! 💗</h2>
+    <p>Un lugar especial para compartir, descubrir y conectar.</p>
+  </section>
+
+  <section class="tarjetas">
+
+    <div class="tarjeta">
+      <h2>📸 Publicaciones</h2>
+      <p>Comparte tus momentos especiales.</p>
+      <%= link_to "Ver publicaciones", posts_path, class: "boton" %>
+    </div>
+
+    <div id="perfil" class="tarjeta">
+      <h2>👩 Mi perfil</h2>
+      <p>Personaliza tu espacio personal.</p>
+      <button>Mi perfil</button>
+    </div>
+
+    <div id="usuarios" class="tarjeta">
+      <h2>💜 Usuarios</h2>
+      <p>Descubre nuevas personas.</p>
+      <button>Ver usuarios</button>
+    </div>
+
+  </section>
+
+  <section id="publicaciones" class="lista-publicaciones">
+    <h2>🌷 Publicaciones recientes</h2>
+
+    <% if @posts.any? %>
+      <% @posts.each do |post| %>
+        <div class="publicacion">
+          <h3><%= post.titulo %></h3>
+          <p><%= post.contenido %></p>
+
+<% if post.foto.attached? %>
+  <%= image_tag post.foto, style: "max-width: 100%; height: auto; border-radius: 15px;" %>
+<% end %>	
+          <small><%= post.created_at.strftime("%d/%m/%Y") %></small>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Aún no hay publicaciones.</p>
+    <% end %>
+
+    <%= link_to "Crear una publicación", new_post_path, class: "boton" %>
+  </section>
+
+  <footer>
+    <p>🌷 Mi espacio - Un lugar para compartir 🌷</p>
+  </footer>
+
+</div>
+
+<style>
+  body {
+    margin: 0;
+    background: #fff0f6;
+    font-family: Arial, sans-serif;
+  }
+
+  .barra {
+    background: white;
+    padding: 18px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 12px #e8c5d5;
+    flex-wrap: wrap;
+  }
+
+  .barra h2 {
+    color: #c45b91;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #a66bc1;
+    margin: 10px;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    color: #d88ab2;
+  }
+
+  .bienvenida {
+    text-align: center;
+    padding: 65px 20px;
+  }
+
+  .bienvenida h2 {
+    color: #c45b91;
+    font-size: 35px;
+  }
+
+  .tarjetas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+  }
+
+  .tarjeta {
+    background: white;
+    width: 240px;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px #e8c5d5;
+  }
+
+  .tarjeta h2 {
+    color: #a66bc1;
+  }
+
+  .tarjeta p {
+    color: #555;
+  }
+
+  button, .boton {
+    display: inline-block;
+    background: #d88ab2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .lista-publicaciones {
+    text-align: center;
+    padding: 35px 20px;
+  }
+
+  .lista-publicaciones h2 {
+    color: #c45b91;
+  }
+
+  .publicacion {
+    background: white;
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px #e8c5d5;
+    text-align: left;
+  }
+
+  .publicacion h3 {
+    color: #a66bc1;
+  }
+
+  .publicacion p {
+    color: #555;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #a66bc1;
+  }
+</style>
+
